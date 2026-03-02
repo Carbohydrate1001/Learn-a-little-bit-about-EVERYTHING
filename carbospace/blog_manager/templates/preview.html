@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}预览: {{ title }} - Carbo Blog Manager{% endblock %}
+
+{% block head %}
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="preview-container">
+    <div class="preview-header">
+        <div class="preview-meta-bar">
+            <a href="/" class="btn btn-secondary btn-sm">← 返回列表</a>
+            <a href="/edit/{{ filename }}" class="btn btn-primary btn-sm">✎ 编辑此文章</a>
+        </div>
+        <h1 class="preview-title">{{ title }}</h1>
+        <div class="preview-meta">
+            {% if date %}
+            <span class="preview-date">📅 {{ date }}</span>
+            {% endif %}
+            {% if tags %}
+            <div class="preview-tags">
+                {% for tag in tags %}
+                <span class="tag">{{ tag }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <article class="preview-body markdown-body" id="preview-body">
+        <!-- Rendered by marked.js -->
+    </article>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>
+    const rawContent = {{ content | tojson }};
+
+    // Configure marked
+    marked.setOptions({
+        breaks: true,
+        gfm: true,
+    });
+
+    // Render markdown
+    document.getElementById('preview-body').innerHTML = marked.parse(rawContent);
+
+    // Apply syntax highlighting to code blocks
+    document.querySelectorAll('#preview-body pre code').forEach(function(el) {
+        hljs.highlightElement(el);
+    });
+</script>
+{% endblock %}

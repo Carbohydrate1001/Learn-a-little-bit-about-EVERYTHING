@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Carbo Blog Manager{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="/" class="navbar-brand">
+                <span class="brand-icon">◆</span>
+                <span class="brand-text">CarboBlog Manager</span>
+            </a>
+            <div class="navbar-links">
+                <a href="/" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">
+                    <span class="nav-icon">☰</span> 文章列表
+                </a>
+                <a href="/new" class="nav-link {% if request.endpoint == 'new_post' %}active{% endif %}">
+                    <span class="nav-icon">✎</span> 新建文章
+                </a>
+                <button id="deploy-btn" class="btn btn-deploy" onclick="startDeploy()">
+                    <span class="nav-icon">▲</span> 部署上线
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flash-container">
+            {% for category, message in messages %}
+            <div class="flash flash-{{ category }}">
+                <span class="flash-text">{{ message }}</span>
+                <button class="flash-close" onclick="this.parentElement.remove()">✕</button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Deploy Panel (bottom drawer) -->
+    <div id="deploy-panel" class="deploy-panel hidden">
+        <div class="deploy-panel-header">
+            <span class="deploy-panel-title">部署日志</span>
+            <div class="deploy-panel-controls">
+                <span id="deploy-status" class="deploy-status"></span>
+                <button onclick="toggleDeployPanel()" class="btn-icon" title="关闭">✕</button>
+            </div>
+        </div>
+        <div id="deploy-log" class="deploy-log"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
