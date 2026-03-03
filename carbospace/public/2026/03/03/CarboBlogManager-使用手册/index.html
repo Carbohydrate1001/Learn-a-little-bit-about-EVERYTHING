@@ -20,31 +20,34 @@
     var CONFIG = {"hostname":"carbohydrate1001.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Feel free to tour around, toasting marshmallows together is extremely recommended!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Carbohyrate&#39;s Space">
-<meta property="og:url" content="https://carbohydrate1001.github.io/index.html">
+  <meta name="description" content="CarboBlogManager：一个轻量的 Hexo 博客本地管理器CarboBlogManager 是为 Carbospace 博客编写的本地管理工具。它基于 Flask 构建，提供一个 Web 界面，用来完成文章的增删改查、Markdown 编辑与预览、图片上传，以及向 GitHub Pages 的一键部署。 本文记录它的使用方法与注意事项。  环境要求管理器的运行依赖以下工具：    工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CarboBlogManager 使用手册">
+<meta property="og:url" content="https://carbohydrate1001.github.io/2026/03/03/CarboBlogManager-%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/index.html">
 <meta property="og:site_name" content="Carbohyrate&#39;s Space">
-<meta property="og:description" content="Feel free to tour around, toasting marshmallows together is extremely recommended!">
+<meta property="og:description" content="CarboBlogManager：一个轻量的 Hexo 博客本地管理器CarboBlogManager 是为 Carbospace 博客编写的本地管理工具。它基于 Flask 构建，提供一个 Web 界面，用来完成文章的增删改查、Markdown 编辑与预览、图片上传，以及向 GitHub Pages 的一键部署。 本文记录它的使用方法与注意事项。  环境要求管理器的运行依赖以下工具：    工具">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-03T02:49:05.000Z">
+<meta property="article:modified_time" content="2026-03-03T03:02:34.020Z">
 <meta property="article:author" content="Centauri_c">
-<meta property="article:tag" content="Python, C++, Deep Learning">
+<meta property="article:tag" content="Vibe coding">
+<meta property="article:tag" content="Tools">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://carbohydrate1001.github.io/">
+<link rel="canonical" href="https://carbohydrate1001.github.io/2026/03/03/CarboBlogManager-%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Carbohyrate's Space</title>
+  <title>CarboBlogManager 使用手册 | Carbohyrate's Space</title>
   
 
 
@@ -142,9 +145,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
@@ -160,10 +164,9 @@
       <meta itemprop="name" content="Carbohyrate's Space">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2026/03/03/CarboBlogManager-%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" class="post-title-link" itemprop="url">CarboBlogManager 使用手册</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          CarboBlogManager 使用手册
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -187,7 +190,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="CarboBlogManager：一个轻量的-Hexo-博客本地管理器"><a href="#CarboBlogManager：一个轻量的-Hexo-博客本地管理器" class="headerlink" title="CarboBlogManager：一个轻量的 Hexo 博客本地管理器"></a>CarboBlogManager：一个轻量的 Hexo 博客本地管理器</h1><p>CarboBlogManager 是为 Carbospace 博客编写的本地管理工具。它基于 Flask 构建，提供一个 Web 界面，用来完成文章的增删改查、Markdown 编辑与预览、图片上传，以及向 GitHub Pages 的一键部署。</p>
+        <h1 id="CarboBlogManager：一个轻量的-Hexo-博客本地管理器"><a href="#CarboBlogManager：一个轻量的-Hexo-博客本地管理器" class="headerlink" title="CarboBlogManager：一个轻量的 Hexo 博客本地管理器"></a>CarboBlogManager：一个轻量的 Hexo 博客本地管理器</h1><p>CarboBlogManager 是为 Carbospace 博客编写的本地管理工具。它基于 Flask 构建，提供一个 Web 界面，用来完成文章的增删改查、Markdown 编辑与预览、图片上传，以及向 GitHub Pages 的一键部署。</p>
 <p>本文记录它的使用方法与注意事项。</p>
 <hr>
 <h2 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h2><p>管理器的运行依赖以下工具：</p>
@@ -369,85 +372,34 @@
 <p><strong>编辑器或预览页面加载缓慢</strong></p>
 <p>EasyMDE、marked.js 和 highlight.js 通过 CDN 加载，首次访问时可能较慢，浏览器缓存后会明显改善。长期离线环境下，可将这些库下载到 <code>static/</code> 目录改为本地加载。</p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/Vibe-coding/" rel="tag"># Vibe coding</a>
+              <a href="/tags/Tools/" rel="tag"># Tools</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://carbohydrate1001.github.io/2025/12/17/Road-to-LLM/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Centauri_c">
-      <meta itemprop="description" content="Feel free to tour around, toasting marshmallows together is extremely recommended!">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Carbohyrate's Space">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/12/17/Road-to-LLM/" class="post-title-link" itemprop="url">Road-to-LLM</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2025-12-17 14:16:14" itemprop="dateCreated datePublished" datetime="2025-12-17T14:16:14+08:00">2025-12-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2026-03-02 17:57:12" itemprop="dateModified" datetime="2026-03-02T17:57:12+08:00">2026-03-02</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/12/17/Road-to-LLM/" rel="prev" title="Road-to-LLM">
+      <i class="fa fa-chevron-left"></i> Road-to-LLM
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -500,6 +452,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CarboBlogManager%EF%BC%9A%E4%B8%80%E4%B8%AA%E8%BD%BB%E9%87%8F%E7%9A%84-Hexo-%E5%8D%9A%E5%AE%A2%E6%9C%AC%E5%9C%B0%E7%AE%A1%E7%90%86%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">CarboBlogManager：一个轻量的 Hexo 博客本地管理器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">环境要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-number">1.2.</span> <span class="nav-text">启动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">脚本模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">可执行程序模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD"><span class="nav-number">1.3.</span> <span class="nav-text">功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%AA%E8%A1%A8%E7%9B%98"><span class="nav-number">1.3.1.</span> <span class="nav-text">仪表盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0"><span class="nav-number">1.3.2.</span> <span class="nav-text">新建文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E6%96%87%E7%AB%A0"><span class="nav-number">1.3.3.</span> <span class="nav-text">编辑文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E7%AB%A0"><span class="nav-number">1.3.4.</span> <span class="nav-text">删除文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown-%E9%A2%84%E8%A7%88"><span class="nav-number">1.3.5.</span> <span class="nav-text">Markdown 预览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0"><span class="nav-number">1.3.6.</span> <span class="nav-text">图片上传</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2"><span class="nav-number">1.3.7.</span> <span class="nav-text">一键部署</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E5%8F%A6%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E4%B8%8A%E4%BD%BF%E7%94%A8"><span class="nav-number">1.4.</span> <span class="nav-text">在另一台电脑上使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.5.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-%E5%8F%82%E8%80%83"><span class="nav-number">1.6.</span> <span class="nav-text">API 参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-number">1.7.</span> <span class="nav-text">常见问题</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

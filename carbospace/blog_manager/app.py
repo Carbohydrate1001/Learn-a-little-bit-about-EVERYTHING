@@ -13,17 +13,8 @@ import threading
 import webbrowser
 import argparse
 import time
-import hashlib
 from datetime import datetime
 
-# #region agent log
-_DEBUG_LOG_PATH = r'd:\Desktop\Workspace\.cursor\debug.log'
-def _dbg(location, message, data=None, hypothesis_id='', run_id=''):
-    try:
-        entry = json.dumps({"location": location, "message": message, "data": data or {}, "hypothesisId": hypothesis_id, "runId": run_id, "timestamp": int(time.time()*1000)}, ensure_ascii=False)
-        with open(_DEBUG_LOG_PATH, 'a', encoding='utf-8') as _f: _f.write(entry + '\n')
-    except: pass
-# #endregion
 from flask import (
     Flask, render_template, request, redirect,
     url_for, flash, jsonify, Response, send_from_directory
@@ -247,21 +238,6 @@ def run_deploy():
     ]
 
     try:
-        # #region agent log — Read source file BEFORE any hexo commands
-        _posts_dir = get_posts_dir()
-        _md_files = [f for f in os.listdir(_posts_dir) if f.endswith('.md')] if os.path.isdir(_posts_dir) else []
-        _source_hashes = {}
-        _source_tails = {}
-        for _mf in _md_files:
-            _mfp = os.path.join(_posts_dir, _mf)
-            with open(_mfp, 'r', encoding='utf-8') as _rf: _mc = _rf.read()
-            _source_hashes[_mf] = hashlib.md5(_mc.encode('utf-8')).hexdigest()
-            _source_tails[_mf] = _mc[-80:] if len(_mc) > 80 else _mc
-        _db_json_exists = os.path.exists(os.path.join(PROJECT_DIR, 'db.json'))
-        _public_exists = os.path.isdir(os.path.join(PROJECT_DIR, 'public'))
-        _dbg('app.py:run_deploy:START', 'Deploy starting - source state', {'source_hashes': _source_hashes, 'source_tails': _source_tails, 'db_json_exists': _db_json_exists, 'public_dir_exists': _public_exists}, hypothesis_id='A,B')
-        # #endregion
-
         for cmd, label in commands:
             deploy_log.append(f'\n{label}')
             deploy_log.append(f'$ {cmd}')
@@ -283,12 +259,6 @@ def run_deploy():
 
             process.wait()
 
-            # #region agent log — After each command
-            _post_db = os.path.exists(os.path.join(PROJECT_DIR, 'db.json'))
-            _post_pub = os.path.isdir(os.path.join(PROJECT_DIR, 'public'))
-            _dbg(f'app.py:run_deploy:after_{cmd.split()[1]}', f'Command "{cmd}" finished', {'returncode': process.returncode, 'db_json_exists': _post_db, 'public_dir_exists': _post_pub}, hypothesis_id='A,D')
-            # #endregion
-
             if process.returncode != 0:
                 deploy_log.append(
                     f'\n[FAIL] Command "{cmd}" failed (exit code: {process.returncode})'
@@ -296,37 +266,6 @@ def run_deploy():
                 with deploy_lock:
                     deploy_status = 'error'
                 return
-
-            # #region agent log — After hexo generate: check generated HTML
-            if cmd == 'hexo generate':
-                _pub_dir = os.path.join(PROJECT_DIR, 'public')
-                _gen_hashes = {}
-                if os.path.isdir(_pub_dir):
-                    for _root, _dirs, _files in os.walk(_pub_dir):
-                        for _gf in _files:
-                            if _gf == 'index.html':
-                                _gfp = os.path.join(_root, _gf)
-                                _rel = os.path.relpath(_gfp, _pub_dir)
-                                with open(_gfp, 'r', encoding='utf-8', errors='replace') as _ghf: _gc = _ghf.read()
-                                _gen_hashes[_rel] = {'hash': hashlib.md5(_gc.encode('utf-8')).hexdigest(), 'len': len(_gc)}
-                _dbg('app.py:run_deploy:after_generate_detail', 'Generated HTML files', {'generated_files': _gen_hashes}, hypothesis_id='C')
-            # #endregion
-
-            # #region agent log — After hexo deploy: check .deploy_git
-            if cmd == 'hexo deploy':
-                _dg_dir = os.path.join(PROJECT_DIR, '.deploy_git')
-                _dg_hashes = {}
-                if os.path.isdir(_dg_dir):
-                    for _root, _dirs, _files in os.walk(_dg_dir):
-                        if '.git' in _root: continue
-                        for _dgf in _files:
-                            if _dgf == 'index.html':
-                                _dgfp = os.path.join(_root, _dgf)
-                                _rel = os.path.relpath(_dgfp, _dg_dir)
-                                with open(_dgfp, 'r', encoding='utf-8', errors='replace') as _dghf: _dgc = _dghf.read()
-                                _dg_hashes[_rel] = {'hash': hashlib.md5(_dgc.encode('utf-8')).hexdigest(), 'len': len(_dgc)}
-                _dbg('app.py:run_deploy:after_deploy_detail', 'Deploy_git HTML files', {'deploy_git_files': _dg_hashes}, hypothesis_id='C')
-            # #endregion
 
             deploy_log.append(f'[OK] {cmd} completed.')
 
@@ -412,12 +351,6 @@ def edit_post(filename):
         content = content.replace('\r\n', '\n').replace('\r', '\n')
         with open(filepath, 'w', encoding='utf-8', newline='\n') as f:
             f.write(content)
-        # #region agent log
-        _saved_hash = hashlib.md5(content.encode('utf-8')).hexdigest()
-        with open(filepath, 'r', encoding='utf-8') as _vf: _verify_content = _vf.read()
-        _verify_hash = hashlib.md5(_verify_content.encode('utf-8')).hexdigest()
-        _dbg('app.py:edit_post:POST', 'File saved and verified', {'filename': filename, 'content_len': len(content), 'saved_hash': _saved_hash, 'readback_hash': _verify_hash, 'last_80_chars': content[-80:] if len(content) > 80 else content, 'match': _saved_hash == _verify_hash}, hypothesis_id='B')
-        # #endregion
         flash('保存成功！', 'success')
         return redirect(url_for('edit_post', filename=filename))
 

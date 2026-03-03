@@ -1,3 +1,10 @@
+---
+title: CarboBlogManager 使用手册
+date: 2026-03-03 10:49:05
+tags:
+  - Vibe coding
+  - Tools
+---
 # CarboBlogManager：一个轻量的 Hexo 博客本地管理器
 
 CarboBlogManager 是为 Carbospace 博客编写的本地管理工具。它基于 Flask 构建，提供一个 Web 界面，用来完成文章的增删改查、Markdown 编辑与预览、图片上传，以及向 GitHub Pages 的一键部署。
